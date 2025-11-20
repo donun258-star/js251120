@@ -3,68 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개발자 포트폴리오</title>
     <style>
+        /* 화면 중앙 정렬 및 배경 설정 */
         body {
             font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            background-color: #f0f2f5;
+            background-color: #e9ecef;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
         }
+
+        /* 흰색 카드 디자인 */
         .card {
             background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            width: 320px;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 450px;
-            width: 90%;
-        }
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #eef2f3;
-            margin-bottom: 20px;
-        }
-        h1 { margin: 10px 0; color: #222; font-size: 1.8rem; }
-        .major { color: #007bff; font-weight: bold; margin-bottom: 10px; }
-        p.intro { color: #555; line-height: 1.6; margin-bottom: 30px; }
-        
-        .tech-stack {
-            text-align: left;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-        .tech-stack h3 { margin: 0 0 10px 0; font-size: 1rem; color: #333; }
-        .tag {
-            display: inline-block;
-            background: #e9ecef;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: #495057;
-            margin: 2px;
         }
 
-        .btn-group { display: flex; gap: 10px; justify-content: center; }
-        .btn {
-            flex: 1;
-            padding: 12px 0;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.2s;
+        /* 프로필 이미지 */
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #f1f3f5;
+            margin-bottom: 15px;
         }
-        .btn-github { background-color: #24292e; color: white; }
-        .btn-blog { background-color: #03c75a; color: white; } /* 네이버 블로그 색상 예시 */
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        /* 이름 및 학번 스타일 */
+        h1 { margin: 10px 0 5px 0; color: #212529; font-size: 1.8rem; }
+        .major { color: #868e96; font-size: 0.95rem; margin-bottom: 30px; }
+
+        /* 시계 디자인 */
+        .clock-container {
+            background-color: #212529; /* 검은 배경 */
+            color: #66d9e8; /* 형광 하늘색 글씨 */
+            padding: 15px;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace; /* 디지털 시계 느낌 폰트 */
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
@@ -72,29 +58,31 @@
     <div class="card">
         <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="프로필" class="profile-img">
         
-        <div class="major">AISW계열</div>
-        <h1>김도윤</h1>
-        
-        <p class="intro">
-            안녕하세요! 프로그래머를 꿈꾸는 대학생입니다.<br>
-            Java와 Spring Boot를 깊이 있게 공부하고 있으며,<br>
-            문제를 해결하는 과정을 즐깁니다.
-        </p>
 
-        <div class="tech-stack">
-            <h3>🛠 Tech Stack</h3>
-            <span class="tag">Java</span>
-            <span class="tag">Spring Boot</span>
-            <span class="tag">Python</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">GitHub</span>
-        </div>
-
-        <div class="btn-group">
-            <a href="https://github.com/donun258-star" class="btn btn-github" target="_blank">GitHub</a>
-            <a href="#" class="btn btn-blog">Blog</a>
+        <div class="clock-container" id="clock">
+            00:00:00
         </div>
     </div>
+
+    <script>
+        // 실시간 시계 자바스크립트
+        function updateClock() {
+            const now = new Date();
+            
+            // 시, 분, 초를 2자리수로 맞춤 (예: 9 -> 09)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            
+            // 화면에 표시
+            document.getElementById('clock').innerText = timeString;
+        }
+
+        setInterval(updateClock, 1000); // 1초마다 실행
+        updateClock(); // 페이지 열자마자 즉시 실행
+    </script>
 
 </body>
 </html>
